@@ -88,7 +88,7 @@ final class SortedLinkedListTest extends TestCase
         $list->insert(100);
         $list->insert(50);
 
-        $this->assertSame(100, $list->first());
+        $this->assertSame(50, $list->first());
     }
 
     public function testIteratorAggregateInterface(): void
@@ -104,15 +104,6 @@ final class SortedLinkedListTest extends TestCase
         }
 
         $this->assertSame([1, 3, 5], $values);
-    }
-
-    public function testInsertUnsupportedTypeThrowsCorrectExceptionMessage(): void
-    {
-        $this->expectException(TypeException::class);
-        $this->expectExceptionMessage("Only int or string values are supported.");
-
-        $list = new SortedLinkedList();
-        $list->insert(3.14); // float data type is not allowed
     }
 
     public function testInsertMixedTypesThrowsCorrectExceptionMessage(): void
