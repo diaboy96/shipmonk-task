@@ -105,4 +105,34 @@ final class SortedLinkedListTest extends TestCase
 
         $this->assertSame([1, 3, 5], $values);
     }
+
+    public function testInsertUnsupportedTypeThrowsCorrectExceptionMessage(): void
+    {
+        $this->expectException(TypeException::class);
+        $this->expectExceptionMessage("Only int or string values are supported.");
+
+        $list = new SortedLinkedList();
+        $list->insert(3.14); // float data type is not allowed
+    }
+
+    public function testInsertMixedTypesThrowsCorrectExceptionMessage(): void
+    {
+        $this->expectException(TypeException::class);
+        $this->expectExceptionMessage("This list only accepts int values.");
+
+        $list = new SortedLinkedList();
+        $list->insert(42); // int
+        $list->insert("text"); // string → should throw exception with message
+    }
+
+    public function testInsertMixedTypesFromStringToIntThrowsCorrectMessage(): void
+    {
+        $this->expectException(TypeException::class);
+        $this->expectExceptionMessage("This list only accepts string values.");
+
+        $list = new SortedLinkedList();
+        $list->insert("text"); // string
+        $list->insert(42); // int → should throw exception with message
+    }
+
 }

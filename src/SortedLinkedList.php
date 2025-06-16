@@ -85,7 +85,7 @@ class SortedLinkedList implements IteratorAggregate, Countable
         if ($this->type === null) {
             $this->type = $incomingType;
         } elseif ($this->type !== $incomingType) {
-            throw new TypeException("This list only accepts {$this->type} values.");
+            throw new TypeException("This list only accepts $this->type values.");
         }
     }
 }
